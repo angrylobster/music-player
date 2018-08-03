@@ -1,5 +1,6 @@
 package com.example.shan.musicplayer;
 
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -8,16 +9,20 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
+    private MediaPlayer mediaPlayer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        mediaPlayer = MediaPlayer.create(this, R.raw.chopin_waltz);
+
         Button playButton = findViewById(R.id.playbutton);
         playButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                Toast.makeText(MainActivity.this, "Playing song...", Toast.LENGTH_SHORT).show();
+                mediaPlayer.start();
             }
         });
 
@@ -25,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         pauseButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                Toast.makeText(MainActivity.this, "Pausing song...", Toast.LENGTH_SHORT).show();
+                mediaPlayer.pause();
             }
         });
     }
