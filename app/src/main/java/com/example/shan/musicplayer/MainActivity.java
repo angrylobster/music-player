@@ -16,7 +16,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mediaPlayer = MediaPlayer.create(this, R.raw.chopin_waltz);
+        mediaPlayer = MediaPlayer.create(this, R.raw.service_bell_daniel_simion);
+        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mediaPlayer) {
+                Toast.makeText(getApplicationContext(), "I'm done!", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         Button playButton = findViewById(R.id.playbutton);
         playButton.setOnClickListener(new View.OnClickListener(){
